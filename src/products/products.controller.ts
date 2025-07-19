@@ -1,3 +1,11 @@
+/**
+ * Esse constroller contém todos os endpoints para as request desejadas
+ * Inclui:
+ *  - Body, Param (parar captura dos parans e pipes)
+ *  - UsePipes e Validation Pipe (para usar o pipe de validação dos dtos)
+ * Esse controle recebe o ProductService como injeção de dependencia para processar os dados
+ */
+
 import { Controller, Get, Post, Put, Delete, Body, Param, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';

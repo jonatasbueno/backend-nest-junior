@@ -1,21 +1,35 @@
+/**
+ * Esse ProductService é uma class com inversão de dependência
+ * nela o método de achar a letra faltante é a findFirstAbsenteLetter
+ * o PrismaSerive e recebido por meio de injeção de depência
+ * existe um constante PRODUCT_EXISTS que representa violação ao tentar inserir um valor que deveria ser único
+ */
+
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { Product } from 'generated/prisma';
 
+const PRODUTO_EXISTS = 'P2002'
+const TOTAL_LETRAS_ALFABETO = 26
 
 @Injectable()
 export class ProductsService {
   constructor(private prisma: PrismaService) {}
 
-  /** função para encontrar a primeira letra ausente  */
   private findFirstAbsentLetter(name: string): string {
+    // aqui eu normalizado tudo em minúscula, removo tudo que não for letra e adiciona num estrutura de dados irreptível
     const letters = new Set(name.toLowerCase().replace(/[^a-z]/g, ''));
-    for (let i = 0; i < 26; i++) {
+
+    for (let i = 0; i < TOTAL_LETRAS_ALFABETO; i++) {
+      // converte o código unicode para letra minúscula
+      // as letras minúsculas começam em 97, por isso da soma com i
+      // ai eu verifico se a estrutura de dados não tem a letra e retorno ela
       const letter = String.fromCharCode(97 + i);
       if (!letters.has(letter)) {
         return letter;
       }
     }
+    // caso a estrutura de dados tenha todas as letras, eu retorno underscore
     return '_';
   }
 
@@ -51,7 +65,7 @@ export class ProductsService {
     try {
       return await this.prisma.product.update({ where: { id }, data });
     } catch (error) {
-      if (error.code === 'P2002') {
+      if (error.code === PRODUTO_EXISTS) {
         throw new BadRequestException('SKU já existe');
       }
       throw error;

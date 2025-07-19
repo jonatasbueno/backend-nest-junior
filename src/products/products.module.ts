@@ -9,6 +9,7 @@ import { PrismaService } from 'src/prisma.service';
 
 @Module({
   controllers: [ProductsController],
+  // permite o uso de ProductService e PrismaService no Controller
   providers: [ProductsService, PrismaService]
 })
 export class ProductsModule {}
