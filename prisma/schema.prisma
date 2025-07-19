@@ -1,0 +1,19 @@
+// Avaliador: Esse é o schema que o prisma irá utilizar pra gerar a base de dados no postgresql, e o código gerado será adicionado na pasta generated/prisma
+// O prisma irá utilizar a variável DATABASE_URL para adquirir o valor da env. O resto é utilizando as atributos do prisma pra gerar a table 
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id    Int     @id @default(autoincrement())
+  name  String
+  price Float
+  sku   String  @unique
+}
