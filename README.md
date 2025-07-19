@@ -2,10 +2,9 @@
 
 ### Para rodar tudo de uma só vez, execute:
 
-<code>
-  npm run start:all
-</coder>
-
+```
+npm run start:all
+```
 ___________
 
 <p align="center">
