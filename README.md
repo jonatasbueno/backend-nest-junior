@@ -1,3 +1,13 @@
+# Backend com Nest (Teste Técnico)
+
+### Para rodar tudo de uma só vez, execute:
+
+<code>
+  npm run start:all
+</coder>
+
+___________
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
